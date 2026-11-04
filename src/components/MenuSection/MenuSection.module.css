@@ -1,7 +1,3 @@
-/* =====================================================================
-   MENU SECTION — 3-D Fan Carousel
-   ===================================================================== */
-
 .section {
   position: relative;
   background: var(--cream);
@@ -11,15 +7,13 @@
   border-radius: 50% 50% 0 0 / 60px 60px 0 0;
   box-shadow: 0 -25px 60px rgba(0,0,0,0.65);
   z-index: 15;
-  /* overflow must be visible so fan cards can peek out at the sides */
-  overflow: visible;
+  overflow: hidden;
 }
 
-/* ── Header ── */
 .header {
   text-align: center;
   max-width: 720px;
-  margin: 0 auto 60px;
+  margin: 0 auto 50px;
   padding: 0 24px;
 }
 
@@ -49,62 +43,61 @@
   margin-top: 10px;
 }
 
-/* ── Fan wrapper — clips horizontal overflow only ── */
-.fanWrap {
+.carousel {
   position: relative;
   width: 100%;
-  /* tall enough for the full fan arc to show */
-  padding-bottom: 40px;
-  overflow: hidden;        /* clips the fan sides cleanly */
-}
-
-/* ── Stage — fixed-height canvas where all cards live ── */
-.stage {
-  position: relative;
-  width: 100%;
-  height: 500px;
-  /* perspective gives depth to the fan */
-  perspective: 1800px;
-  perspective-origin: 50% 100%;
-  cursor: grab;
-  touch-action: none;      /* let pointer events own the gesture */
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-/* ── Every card is absolutely centred in the stage ──
-   GSAP moves them from this shared base position        */
-.card {
-  position: absolute;
-  /* Centre point horizontally and sit cards near the bottom of stage */
-  left: 50%;
-  bottom: 60px;
-  margin-left: -110px;    /* half of card width (220px) */
-  width: 220px;
-  height: 350px;
-  border-radius: 16px;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px 48px;
   overflow: hidden;
+}
+
+.stage {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 30px 10px 40px;
+  will-change: transform;
+}
+
+.card {
+  flex-shrink: 0;
+  width: 250px;
+  height: 400px;
+  background: #151515;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.28);
+  transition: box-shadow 0.4s ease;
+  position: relative;
   display: flex;
   flex-direction: column;
-  background: #151515;
-  border: 1px solid rgba(255,255,255,0.07);
-  box-shadow:
-    0 20px 50px rgba(0,0,0,0.5),
-    0 4px 12px rgba(0,0,0,0.3);
-  /* transform-origin is set by GSAP each frame, but set a safe default */
-  transform-origin: 50% 115%;
-  will-change: transform, filter;
-  pointer-events: none;   /* stage owns pointer events, not individual cards */
+  border: 1px solid rgba(255,255,255,0.06);
+  transform: rotate(var(--rotate, 0deg));
 }
 
-/* ── Card photo area ── */
+.card:hover {
+  transform: scale(1.08) rotate(0deg) translateY(-8px) !important;
+  z-index: 10;
+  box-shadow: 0 25px 60px rgba(163,13,24,0.35);
+}
+
+.cardFeatured {
+  transform: rotate(0deg) scale(1.06);
+  z-index: 5;
+  border-color: rgba(163,13,24,0.5);
+  box-shadow: 0 20px 50px rgba(163,13,24,0.25), 0 10px 25px rgba(0,0,0,0.3);
+}
+
 .cardImage {
+  height: 60%;
   position: relative;
-  flex: 1;
   overflow: hidden;
-  min-height: 0;
 }
 
+/* Actual food photo — covers the card image area */
 .cardImg {
   position: absolute;
   inset: 0;
@@ -113,87 +106,78 @@
   object-fit: cover;
   object-position: center;
   display: block;
-  pointer-events: none;
-  /* prevent browser drag-image ghost */
+  transition: transform 0.5s ease;
   -webkit-user-drag: none;
+}
+
+.card:hover .cardImg {
+  transform: scale(1.07);
 }
 
 .cardImageOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 40%,
-    rgba(21,21,21,0.98) 100%
-  );
+  background: linear-gradient(to bottom, transparent 40%, rgba(21,21,21,0.95) 100%);
 }
 
-/* ── Card info ── */
 .cardContent {
-  padding: 14px 18px 18px;
+  padding: 16px 20px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  flex-shrink: 0;
+  height: 40%;
   background: #151515;
   color: var(--cream);
-  gap: 6px;
 }
 
 .cardName {
   font-family: var(--font-serif-title);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--cream);
   line-height: 1.3;
+  margin-bottom: 8px;
 }
 
 .cardPrice {
   font-family: var(--font-serif-display);
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: var(--gold);
+  margin-top: 10px;
 }
 
-/* ── Drag hint ── */
-.dragHint {
-  text-align: center;
-  margin-top: 16px;
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.22em;
-  color: rgba(100,80,70,0.6);
-  text-transform: uppercase;
-  pointer-events: none;
-  user-select: none;
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 24px;
 }
 
-.dragHint span {
-  color: var(--red-door);
-  font-size: 0.85rem;
+.btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--red-door);
+  color: #ffffff;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(163,13,24,0.4);
+  cursor: pointer;
+  border: none;
 }
+.btn:hover { background: var(--red-bright); transform: scale(1.1); }
 
-/* ── CTA button ── */
-.cta {
-  text-align: center;
-  margin-top: 50px;
-  position: relative;
-  z-index: 2;
-}
-
-/* ── Responsive ── */
-@media (max-width: 1024px) {
-  .stage { height: 440px; }
-  .card  { width: 200px; height: 320px; margin-left: -100px; }
-}
+.cta { text-align: center; margin-top: 44px; }
 
 @media (max-width: 768px) {
+  .carousel { padding: 20px 24px; }
   .title { font-size: 2rem; }
-  .stage { height: 380px; }
-  .card  { width: 180px; height: 290px; margin-left: -90px; bottom: 40px; }
-  .cardName  { font-size: 0.85rem; }
-  .cardPrice { font-size: 1.1rem; }
 }
