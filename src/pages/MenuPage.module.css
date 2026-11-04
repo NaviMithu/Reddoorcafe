@@ -1,0 +1,198 @@
+.page {
+  min-height: 100vh;
+  background: var(--cream);
+  color: #1a1615;
+}
+
+.header {
+  background: var(--black-deep);
+  padding: 80px 48px 60px;
+  position: relative;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--cream-dim);
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: color 0.3s ease;
+}
+.backBtn:hover { color: var(--gold); }
+
+.headerContent { text-align: center; }
+
+.label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--red-bright);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-family: var(--font-serif-display);
+  font-size: 4rem;
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: 0.08em;
+}
+
+.subtitle {
+  font-family: var(--font-sans);
+  color: var(--grey-soft);
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+.tabsWrapper {
+  background: var(--black-charcoal);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(245,235,221,0.08);
+}
+
+.tabs {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  gap: 0;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.tabs::-webkit-scrollbar { display: none; }
+
+.tab {
+  flex-shrink: 0;
+  padding: 18px 24px;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey-soft);
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+.tab:hover { color: var(--cream); }
+.tabActive {
+  color: var(--cream);
+  border-bottom-color: var(--red-door);
+}
+
+.content {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 60px 48px;
+}
+
+.categoryTitle {
+  font-family: var(--font-serif-title);
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: #181413;
+  margin-bottom: 36px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(163,13,24,0.2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid rgba(26,22,21,0.1);
+  border-radius: 8px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border-color: rgba(163,13,24,0.25);
+}
+
+.cardSpecial {
+  border-color: rgba(163,13,24,0.3);
+  background: linear-gradient(135deg, #fff 85%, rgba(245,235,221,0.4) 100%);
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.badges { display: flex; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+
+.badge {
+  font-size: 0.65rem;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+.badgeVeg { background: rgba(34,120,34,0.1); color: #226622; }
+.badgeNonVeg { background: rgba(180,20,20,0.1); color: #b41414; }
+.badgeChef { background: rgba(198,163,106,0.15); color: #7a5e28; }
+
+.cardName {
+  font-family: var(--font-serif-title);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #181413;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.cardDesc {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: #6a625b;
+  line-height: 1.5;
+}
+
+.cardPrice {
+  font-family: var(--font-serif-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--red-door);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.note {
+  background: var(--black-deep);
+  color: var(--grey-soft);
+  text-align: center;
+  padding: 32px 24px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .header { padding: 60px 24px 40px; }
+  .title { font-size: 2.4rem; }
+  .content { padding: 40px 24px; }
+  .grid { grid-template-columns: 1fr; }
+  .categoryTitle { font-size: 1.8rem; }
+}
+

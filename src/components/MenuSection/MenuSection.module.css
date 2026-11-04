@@ -1,0 +1,199 @@
+/* =====================================================================
+   MENU SECTION — 3-D Fan Carousel
+   ===================================================================== */
+
+.section {
+  position: relative;
+  background: var(--cream);
+  color: #1a1615;
+  padding: 90px 0 110px;
+  margin-top: -60px;
+  border-radius: 50% 50% 0 0 / 60px 60px 0 0;
+  box-shadow: 0 -25px 60px rgba(0,0,0,0.65);
+  z-index: 15;
+  /* overflow must be visible so fan cards can peek out at the sides */
+  overflow: visible;
+}
+
+/* ── Header ── */
+.header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 60px;
+  padding: 0 24px;
+}
+
+.label {
+  color: var(--red-door);
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-family: var(--font-serif-title);
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: #181413;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  color: #6a625b;
+  margin-top: 10px;
+}
+
+/* ── Fan wrapper — clips horizontal overflow only ── */
+.fanWrap {
+  position: relative;
+  width: 100%;
+  /* tall enough for the full fan arc to show */
+  padding-bottom: 40px;
+  overflow: hidden;        /* clips the fan sides cleanly */
+}
+
+/* ── Stage — fixed-height canvas where all cards live ── */
+.stage {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  /* perspective gives depth to the fan */
+  perspective: 1800px;
+  perspective-origin: 50% 100%;
+  cursor: grab;
+  touch-action: none;      /* let pointer events own the gesture */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ── Every card is absolutely centred in the stage ──
+   GSAP moves them from this shared base position        */
+.card {
+  position: absolute;
+  /* Centre point horizontally and sit cards near the bottom of stage */
+  left: 50%;
+  bottom: 60px;
+  margin-left: -110px;    /* half of card width (220px) */
+  width: 220px;
+  height: 350px;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #151515;
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.5),
+    0 4px 12px rgba(0,0,0,0.3);
+  /* transform-origin is set by GSAP each frame, but set a safe default */
+  transform-origin: 50% 115%;
+  will-change: transform, filter;
+  pointer-events: none;   /* stage owns pointer events, not individual cards */
+}
+
+/* ── Card photo area ── */
+.cardImage {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.cardImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  pointer-events: none;
+  /* prevent browser drag-image ghost */
+  -webkit-user-drag: none;
+}
+
+.cardImageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(21,21,21,0.98) 100%
+  );
+}
+
+/* ── Card info ── */
+.cardContent {
+  padding: 14px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex-shrink: 0;
+  background: #151515;
+  color: var(--cream);
+  gap: 6px;
+}
+
+.cardName {
+  font-family: var(--font-serif-title);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cream);
+  line-height: 1.3;
+}
+
+.cardPrice {
+  font-family: var(--font-serif-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+/* ── Drag hint ── */
+.dragHint {
+  text-align: center;
+  margin-top: 16px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: rgba(100,80,70,0.6);
+  text-transform: uppercase;
+  pointer-events: none;
+  user-select: none;
+}
+
+.dragHint span {
+  color: var(--red-door);
+  font-size: 0.85rem;
+}
+
+/* ── CTA button ── */
+.cta {
+  text-align: center;
+  margin-top: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .stage { height: 440px; }
+  .card  { width: 200px; height: 320px; margin-left: -100px; }
+}
+
+@media (max-width: 768px) {
+  .title { font-size: 2rem; }
+  .stage { height: 380px; }
+  .card  { width: 180px; height: 290px; margin-left: -90px; bottom: 40px; }
+  .cardName  { font-size: 0.85rem; }
+  .cardPrice { font-size: 1.1rem; }
+}
