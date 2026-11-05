@@ -99,7 +99,11 @@ export default function Navbar() {
       <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`} id="mainNav">
         {/* Logo */}
         <a href="#hero" className={styles.logo} onClick={() => handleNavClick('#hero')}>
-          <span className={styles.logoText}>RED DOOR</span>
+          <span className={styles.logoText}>
+            RED
+            <img src="/images/padlock.png" alt="padlock" className={styles.padlock} />
+            DOOR
+          </span>
           <span className={styles.logoLine}></span>
           <span className={styles.logoSub}>CAFÉ</span>
         </a>

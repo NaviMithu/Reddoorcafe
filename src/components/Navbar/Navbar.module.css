@@ -44,6 +44,21 @@
   letter-spacing: 0.22em;
   color: var(--cream);
   text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Padlock icon between RED and DOOR */
+.padlock {
+  display: inline-block;
+  width: auto;
+  height: 1.1em;        /* matches the cap-height of the surrounding text */
+  vertical-align: middle;
+  object-fit: contain;
+  position: relative;
+  top: -0.05em;         /* fine-tune optical vertical alignment */
+  flex-shrink: 0;
 }
 
 .logoLine {

@@ -72,12 +72,15 @@ export default function AboutSection() {
 
         {/* Right: Visuals + Badge */}
         <div className={styles.visuals}>
-          <div className={styles.visualLeft}></div>
+          <div className={styles.visualLeft}>
+            <img src="/images/play.png" alt="Red Door Café interior" className={styles.visualImg} />
+          </div>
           <div className={styles.visualRight}>
-            <div className={styles.badge}>
+            <div className={styles.badge}> 
               <span>10+</span>
               <span>YEARS OF EXCELLENCE</span>
             </div>
+            <img src="/images/bu.png" alt="Red Door Café food" className={styles.visualImg} />  
           </div>
         </div>
       </div>

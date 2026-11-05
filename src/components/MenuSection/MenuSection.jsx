@@ -4,13 +4,50 @@ import { gsap } from 'gsap'
 import styles from './MenuSection.module.css'
 
 const MENU_ITEMS = [
+  
   {
-    name: 'ALFREDO PASTA',
-    price: '₹235',
-    img: '/images/Alfredo_Pasta.png',
-    bg: 'radial-gradient(circle at 50% 40%, rgba(240,100,40,0.28) 0%, transparent 70%), #150602',
-    rotate: -3,
-  },
+    name: ' French Fries ',
+    price: '₹150',
+    img: '/images/Fries.png',
+    bg: 'radial-gradient(circle at 50% 50%, rgba(180,80,40,0.25) 0%, transparent 70%), #0d0404',
+    rotate: 2,
+  },  
+  
+  {
+    name: ' Ramen ',
+    price: '₹250',
+    img: '/images/ramen.png',
+    bg: 'radial-gradient(circle at 50% 50%, rgba(180,80,40,0.25) 0%, transparent 70%), #0d0404',
+    rotate: 2,
+  },  
+  {
+    name: ' Loaded Fries ',
+    price: '₹229',
+    img: '/images/Loaded_Fries.png',
+    bg: 'radial-gradient(circle at 50% 50%, rgba(180,80,40,0.25) 0%, transparent 70%), #0d0404',
+    rotate: 2,
+  },  
+  {
+    name: ' Korean Burger ',
+    price: '₹249',
+    img: '/images/Korean.png',
+    bg: 'radial-gradient(circle at 50% 50%, rgba(180,80,40,0.25) 0%, transparent 70%), #0d0404',
+    rotate: 2,
+  },  
+  {
+    name: ' Cheesy Nachos ',
+    price: '₹239',
+    img: '/images/Cheesy_Nachos.png',
+    bg: 'radial-gradient(circle at 50% 50%, rgba(180,80,40,0.25) 0%, transparent 70%), #0d0404',
+    rotate: 1,
+  },  
+  {
+    name: ' Classic Burger ',
+    price: '₹199',
+    img: '/images/Burger.png',
+    bg: 'radial-gradient(circle at 50% 50%, rgba(180,80,40,0.25) 0%, transparent 70%), #0d0404',
+    rotate: 1,
+  },  
   {
     name: 'Long Island Iced Tea',
     price: '₹250',
@@ -47,6 +84,13 @@ const MENU_ITEMS = [
     bg: 'radial-gradient(circle at 50% 40%, rgba(240,190,40,0.26) 0%, transparent 70%), #130a01',
     rotate: 2,
   },
+  {
+    name: 'ALFREDO PASTA',
+    price: '₹235',
+    img: '/images/Alfredo_Pasta.png',
+    bg: 'radial-gradient(circle at 50% 40%, rgba(240,100,40,0.28) 0%, transparent 70%), #150602',
+    rotate: -3,
+  }
 ]
 
 export default function MenuSection() {

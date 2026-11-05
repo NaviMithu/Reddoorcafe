@@ -74,21 +74,11 @@
   overflow: hidden;
   border: 1px solid rgba(245,235,221,0.08);
   box-shadow: 0 15px 40px rgba(0,0,0,0.7);
-  background:
-    radial-gradient(circle 80px at 40% 40%, rgba(255,200,120,0.25) 0%, transparent 70%),
-    radial-gradient(ellipse at 50% 80%, rgba(163,13,24,0.3) 0%, transparent 65%),
-    linear-gradient(180deg, #1c0a0d 0%, #0c0405 100%);
+  background: #0c0405;   /* fallback while image loads */
   position: relative;
 }
-.visualLeft::after {
-  content: 'COZY BISTRO VIBE';
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
-  color: var(--gold);
-}
+
+/* Remove the old ::after text label */
 
 .visualRight {
   height: 480px;
@@ -96,10 +86,23 @@
   overflow: hidden;
   border: 1px solid rgba(245,235,221,0.08);
   box-shadow: 0 15px 40px rgba(0,0,0,0.7);
-  background:
-    radial-gradient(circle 90px at 60% 35%, rgba(220,180,110,0.25) 0%, transparent 70%),
-    linear-gradient(180deg, #160c08 0%, #0a0503 100%);
+  background: #0a0503;   /* fallback while image loads */
   position: relative;
+}
+
+/* ── Images fill their panel completely ── */
+.visualImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.visualLeft:hover .visualImg,
+.visualRight:hover .visualImg {
+  transform: scale(1.04);
 }
 
 .badge {
