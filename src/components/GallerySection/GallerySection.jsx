@@ -1,12 +1,43 @@
 import styles from './GallerySection.module.css'
 
+// 4 real images + 2 placeholder cells (keep the grid layout intact)
 const CELLS = [
-  { cls: 'large', tag: 'Atmosphere', caption: 'The Mahogany Bar & Warm Evenings' },
-  { cls: 'tall',  tag: 'Artisan',    caption: 'Pour Over Rituals & Roast' },
-  { cls: 'small', tag: 'Bakes',      caption: 'Daily Morning Pastries' },
-  { cls: 'small', tag: 'Greens',     caption: 'Pesto Infusions & Fresh Herbs' },
-  { cls: 'wide',  tag: 'Kitchen',    caption: 'Woodfired Oven Crusts & Flame' },
-  { cls: 'medium',tag: 'Comfort',    caption: 'Quiet Corners for Reflection' },
+  {
+    cls: 'large',
+    tag: 'Garlic Delight',
+    caption: 'Crispy Garlic Bread with Herb Butter',
+    img: '/images/garlick.png',
+  },
+  {
+    cls: 'tall',
+    tag: 'Artisan Bao',
+    caption: 'Steamed Bao Buns with Signature Fillings',
+    img: '/images/Boa.png',
+  },
+  {
+    cls: 'small',
+    tag: 'Sweet Endings',
+    caption: 'House-Baked Celebration Cakes',
+    img: '/images/cake1.png',
+  },
+  {
+    cls: 'small',
+    tag: 'French Dip',
+    caption: 'Classic French Dip with Au Jus',
+    img: '/images/french_dip.png',
+  },
+  {
+    cls: 'wide',
+    tag: 'Kitchen',
+    caption: 'Woodfired Oven Crusts & Flame',
+    img: null,
+  },
+  {
+    cls: 'medium',
+    tag: 'Comfort',
+    caption: 'Quiet Corners for Reflection',
+    img: null,
+  },
 ]
 
 export default function GallerySection() {
@@ -21,6 +52,15 @@ export default function GallerySection() {
       <div className={styles.grid}>
         {CELLS.map((cell, i) => (
           <div key={i} className={`${styles.cell} ${styles[cell.cls]}`}>
+            {cell.img && (
+              <img
+                src={cell.img}
+                alt={cell.caption}
+                className={styles.cellImg}
+                loading="lazy"
+                draggable="false"
+              />
+            )}
             <div className={styles.caption}>
               <span className={styles.tag}>{cell.tag}</span>
               {cell.caption}
@@ -31,4 +71,3 @@ export default function GallerySection() {
     </section>
   )
 }
-
